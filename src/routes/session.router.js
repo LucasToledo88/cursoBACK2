@@ -28,10 +28,10 @@ router.post("/register", async (req, res) => {
     await nuevoUsuario.save();
 
     //Genero el token de JWT
-    const token = jwt.sign({ usuario: nuevoUsuario.usuario, rol: nuevoUsuario.rol }, "coderShopSecreto", { expiresIn: "1h" });
+    const token = jwt.sign({ usuario: nuevoUsuario.usuario, rol: nuevoUsuario.rol }, "rotiseriaShopSecreto", { expiresIn: "1h" });
 
     //Genero la cookie
-    res.cookie("coderShopToken", token, {
+    res.cookie("rotiseriaShopToken", token, {
       maxAge: 3600000,
       httpOnly: true
     });
@@ -60,10 +60,10 @@ router.post("/login", async (req, res) => {
     }
 
     //Genero el token de JWT
-    const token = jwt.sign({ usuario: usuarioEncontrado.usuario, rol: usuarioEncontrado.rol }, "coderShopSecreto", { expiresIn: "1h" });
+    const token = jwt.sign({ usuario: usuarioEncontrado.usuario, rol: usuarioEncontrado.rol }, "rotiseriaShopSecreto", { expiresIn: "1h" });
 
     //Genero la cookie
-    res.cookie("coderShopToken", token, {
+    res.cookie("rotiseriaShopToken", token, {
       maxAge: 60 * 60 * 1000,
       httpOnly: true
     });
@@ -86,14 +86,14 @@ router.get("/current", passportCall("jwt"), (req, res) => {
 // Ruta exclusiva para admins
 router.get("/admin", passportCall("jwt"), (req, res) => {
   if (req.user.rol !== "admin") {
-    return res.status(403).send("Acceso denegado. No posees privilegios necesatios.");
+    return res.status(403).send("Acceso denegado. No posees privilegios necesarios.");
   }
   res.render("admin");
 });
 
 // Ruta para cerrar sesión
 router.post("/logout", (req, res) => {
-  res.clearCookie("coderShopToken");
+  res.clearCookie("rotiseriaShopToken");
   res.redirect("/login");
 });
 

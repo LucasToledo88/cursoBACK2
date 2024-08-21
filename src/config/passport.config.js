@@ -10,14 +10,14 @@ const initializePassport = () => {
     let token = null;
 
     if (req && req.cookies) {
-      token = req.cookies["coderShopToken"];
+      token = req.cookies["rotiseriaShopToken"];
     }
     return token;
   }
 
   passport.use("jwt", new JWTStrategy({
     jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]),
-    secretOrKey: "coderShopSecreto"
+    secretOrKey: "rotiseriaShopSecreto"
   }, async (jwt_payload, done) => {
     try {
       return done(null, jwt_payload);

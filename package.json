@@ -8,7 +8,7 @@
     "dev": "nodemon src/app.js"
   },
   "keywords": [],
-  "author": "Gabriel Campo",
+  "author": "Lucas Toledo",
   "license": "ISC",
   "description": "",
   "dependencies": {

@@ -6,7 +6,7 @@ const router = Router();
 router.get("/", async (req, res) => {
   try {
     const titulo = "Todos nuestros Productos";
-    const productos = await ProductoModel.find({ activo: true }).lean();
+    const productos = await ProductoModel.find().lean();
     const categorias = await ProductoModel.distinct("categoria").lean();
     res.render("store", { productos, categorias, titulo });
   } catch (error) {
@@ -14,16 +14,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/destacados", async (req, res) => {
-  try {
-    const titulo = "Productos Destacados";
-    const productos = await ProductoModel.find({ destacado: true, activo: true }).lean();
-    const categorias = await ProductoModel.distinct("categoria").lean();
-    res.render("store", { productos, categorias, titulo });
-  } catch (error) {
-    res.status(500).send("Error al recuperar Productos Destacados.")
-  }
-});
 
 router.get("/categorias/:categoria", async (req, res) => {
   try {

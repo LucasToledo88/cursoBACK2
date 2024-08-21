@@ -5,7 +5,7 @@ import initializePassport from "./config/passport.config.js";
 import cookieParser from "cookie-parser";
 import adminRouter from "./routes/admin.router.js";
 import sessionRouter from "./routes/session.router.js";
-import shopRouter from "./routes/shop.router.js";
+import rotiseriaRouter from "./routes/rotiseria.router.js";
 
 import "./database.js";
 
@@ -27,7 +27,7 @@ app.set("view engine", "handlebars");
 app.set("views", "./src/views");
 
 // Rutas
-app.use("/", shopRouter);
+app.use("/", rotiseriaRouter);
 app.use("/admin", adminRouter);
 app.use("/api/sessions", sessionRouter);
 
